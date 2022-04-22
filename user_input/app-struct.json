@@ -1,0 +1,32 @@
+{
+    "pages":{
+      "page":[
+        {"caption":"Home","type":"login","bg-col":"yellow","text-col":"black"},
+        {"caption":"About","type":""},
+        {"caption":"Photos","type":"list-paginate"},
+        {"caption":"Contact","type":"list"},
+
+        {"caption":"Info","type":"tabular", "tabularItem":[
+          {"tabCaption":"whats new","icon":"?"},
+          {"tabCaption":"health","icon":"?"},
+          {"tabCaption":"contact","icon":"?"},
+          {"tabCaption":"survey","icon":"?","page":[
+            {"caption":"sport-facility"},
+            {"caption":"college-facility"},
+            {"caption":"?"}
+          ]}
+        ]},
+
+        {"caption":"LuckyTOYOU"},
+        {"caption":"LuckyTOMe"}
+        
+      ]
+    },
+  
+    "layout":"template1",
+    "backgroundColour":"danger",
+    "framework":"bootstrap"
+    
+    
+  
+  }

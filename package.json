@@ -1,0 +1,19 @@
+{
+  "name": "mobilesetgo2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Putera Syabil",
+  "license": "MIT",
+  "keywords": [
+    "MSG2"
+  ],
+  "description": "",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "clear": "^0.1.0",
+    "fs-extra": "^10.0.1"
+  }
+}

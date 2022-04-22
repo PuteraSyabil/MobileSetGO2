@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- var -->
+<title>main page</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<script src="link.js"></script>
+
+<style>
+html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
+.mySlides {display:none}
+footer {margin-top: auto;}
+body{min-height: 100vh;display: flex;flex-direction: column;}
+a:hover,a:visited,a:link{color: black;}
+a:hover{background-color: aliceblue;}
+ul{list-style-type: none;}
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+
+   text-align: center;
+}
+</style>
+</head>
+
+<body ng-app="myApp">
+
+
+
+<nav class="" id="navItemCol">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav" id="navItem">
+        </ul>
+    </div>
+</nav>
+
+
+
+<!-- Content -->
+<div class="ng-view">error recall function</div>
+
+<!-- Footer -->
+
+
+  <footer class="" id="footerItem">
+      <div class="footer-copyright text-center py-3">
+        <h3>footer</h3>
+      </div> 
+  </footer>
+
+</body>
+
+
