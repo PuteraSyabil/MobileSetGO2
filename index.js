@@ -503,7 +503,42 @@ var changeSubPageCol = function(){
 
 var generateLayoutType = function()
 {
+    var i = 0;
     
+    while(i<app.pages.page.length)
+    {
+        if(app.pages.page[i].type=="login")
+        {
+            if(app.layout=="template3")
+            {
+               var temp = fs.readFileSync('layout_template/'+app.framework+'/page_type/'+app.pages.page[i].type+'/'+app.pages.page[i].type+'.html','utf8',);
+               fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html',temp);
+            }
+            else
+            {
+                fs.copySync('layout_template/'+app.framework+'/page_type/'+app.pages.page[i].type+'/'+app.pages.page[i].type+'.html', desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html');
+            }
+            
+            console.log('copy login');
+        }
+        else if(app.pages.page[i].type=="list-paginate")
+        {
+            
+        }
+        else if(app.pages.page[i].type=="list")
+        {
+            
+        }
+        else if(app.pages.page[i].type=="tabular")
+        {
+            
+        }
+        else
+        {
+            console.log(app.pages.page[i].caption+" has no type define")
+        }
+        i++;
+    }
 }
 
 
@@ -514,7 +549,7 @@ const run = async()=>
     generateLayout();
     console.log("finish");
     writeBackgroundColour();
-    
+    generateLayoutType();
     
     
 

@@ -9,7 +9,6 @@
         {"caption":"Info","type":"tabular", "tabularItem":[
           {"tabCaption":"whats new","icon":"?"},
           {"tabCaption":"health","icon":"?"},
-          {"tabCaption":"contact","icon":"?"},
           {"tabCaption":"survey","icon":"?","page":[
             {"caption":"sport-facility"},
             {"caption":"college-facility"},
@@ -24,8 +23,8 @@
     },
   
     "layout":"template1",
-    "backgroundColour":"danger",
-    "framework":"bootstrap"
+    "backgroundColour":"teal",
+    "framework":"w3css"
     
     
   
