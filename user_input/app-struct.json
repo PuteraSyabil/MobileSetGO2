@@ -22,9 +22,9 @@
       ]
     },
   
-    "layout":"template1",
-    "backgroundColour":"teal",
-    "framework":"w3css"
+    "layout":"template3",
+    "backgroundColour":"danger",
+    "framework":"bootstrap"
     
     
   

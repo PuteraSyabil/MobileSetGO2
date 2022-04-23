@@ -438,7 +438,7 @@ var writeBackgroundColour = function(){
     {
         var oldCol=$('#backgroundColItem').attr('class');
         var newCol=('bg-'+bgCol)+encodeURIComponent(oldCol);
-        var newFooterCol=('container-fluid text-center pl-2 bg-'+bgCol)+encodeURIComponent(oldCol);
+        var newFooterCol=('bg-'+bgCol)+encodeURIComponent(oldCol);
         $('#backgroundColItem').attr('class',newCol).html();
 
         var colHTML=$('*').html();
@@ -504,7 +504,7 @@ var changeSubPageCol = function(){
 var generateLayoutType = function()
 {
     var i = 0;
-    
+
     while(i<app.pages.page.length)
     {
         if(app.pages.page[i].type=="login")
