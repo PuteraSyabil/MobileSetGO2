@@ -527,7 +527,49 @@ var generateLayoutType = function()
         }
         else if(app.pages.page[i].type=="list")
         {
-            
+            if(app.layout=="template3")
+            {
+               var temp = fs.readFileSync('layout_template/'+app.framework+'/page_type/'+app.pages.page[i].type+'/'+app.pages.page[i].type+'.html','utf8',);
+               fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html',temp);
+
+               var j=0;
+               while(j<app.pages.page[i].listItem.length)
+               {
+                if(app.framework=="w3css")
+                {
+                    var tempLi= '<li><span class="w3-large">'+app.pages.page[i].listItem[j].listCaption+'</span><br><span>'+app.pages.page[i].listItem[j].listDescription+'</span></li>\n'
+                    fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html',tempLi);
+                }
+                else
+                {
+                    var tempLi= '<li class="list-group-item"><h5>'+app.pages.page[i].listItem[j].listCaption+'</h5><br><p>'+app.pages.page[i].listItem[j].listDescription+'</p></li>\n'
+                    fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html',tempLi);
+                }
+                j++;
+               }
+            }
+            else
+            {
+                fs.copySync('layout_template/'+app.framework+'/page_type/'+app.pages.page[i].type+'/'+app.pages.page[i].type+'.html', desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html');
+                var j=0;
+                while(j<app.pages.page[i].listItem.length)
+                {
+                    if(app.framework=="w3css")
+                    {
+                        var tempLi= '<li><span class="w3-large">'+app.pages.page[i].listItem[j].listCaption+'</span><br><span>'+app.pages.page[i].listItem[j].listDescription+'</span></li>\n'
+                        fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html',tempLi);
+                    }
+                    else
+                    {
+                        var tempLi= '<li class="list-group-item"><h5>'+app.pages.page[i].listItem[j].listCaption+'</h5><br><p>'+app.pages.page[i].listItem[j].listDescription+'</p></li>\n'
+                    fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html',tempLi);
+                    }
+                    j++;
+                }
+            }
+
+            fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html','</ul>');
+            console.log('copy list');
         }
         else if(app.pages.page[i].type=="tabular")
         {
