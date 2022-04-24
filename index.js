@@ -30,6 +30,7 @@ var readJSONTemplate = function(){
     }
 }
 
+
 var createLinkJSFile = function()
 {
     var i= 0;
@@ -523,6 +524,33 @@ var generateLayoutType = function()
         }
         else if(app.pages.page[i].type=="list-paginate")
         {
+
+
+            if(app.layout=="template3")
+            {
+                var temp = fs.readFileSync('layout_template/'+app.framework+'/page_type/'+app.pages.page[i].type+'/'+app.pages.page[i].type+'.html','utf8',);
+                fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html',temp);
+            }
+            else
+            {
+                fs.copySync('layout_template/'+app.framework+'/page_type/'+app.pages.page[i].type+'/'+app.pages.page[i].type+'.html', desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html');
+                
+
+              
+            }
+
+            //create obj file
+                fs.copySync('layout_template/'+app.framework+'/page_type/'+app.pages.page[i].type+'/'+app.pages.page[i].type+'-obj.js', desktopDir+'/test_new_template/'+app.pages.page[i].type+'-obj.js');
+                var obj ="";
+                for(var j =0;j<app.pages.page[i].listItem.length;j++)
+                {
+                    obj='{"listCaption":"'+app.pages.page[i].listItem[j].listCaption+'","listDescription":"'+app.pages.page[i].listItem[j].listDescription+'"},\n';
+                    
+                    fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].type+'-obj.js',obj);
+                }
+                fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].type+'-obj.js',"];")
+
+                console.log("copy pagination");
             
         }
         else if(app.pages.page[i].type=="list")
@@ -562,7 +590,7 @@ var generateLayoutType = function()
                     else
                     {
                         var tempLi= '<li class="list-group-item"><h5>'+app.pages.page[i].listItem[j].listCaption+'</h5><br><p>'+app.pages.page[i].listItem[j].listDescription+'</p></li>\n'
-                    fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html',tempLi);
+                        fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html',tempLi);
                     }
                     j++;
                 }

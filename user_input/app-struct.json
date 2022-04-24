@@ -3,10 +3,19 @@
       "page":[
         {"caption":"Home","type":"login","bg-col":"yellow","text-col":"black"},
         {"caption":"About","type":""},
-        {"caption":"Photos","type":"list-paginate"},
+        {"caption":"Photos","type":"list-paginate","listItem":[
+          {"listCaption":"Jill","listDescription":""},
+          {"listCaption":"Eve","listDescription":"test ing"},
+          {"listCaption":"Adam"},
+          {"listCaption":"Adam"},
+          {"listCaption":"Adam"},
+          {"listCaption":"Syabil","listDescription":"0122991249"}
+        ]},
         {"caption":"Contact","type":"list","listItem":[
           {"listCaption":"Jill","listDescription":""},
           {"listCaption":"Eve","listDescription":"test ing"},
+          {"listCaption":"Adam"},
+          {"listCaption":"Adam"},
           {"listCaption":"Adam"},
           {"listCaption":"Syabil","listDescription":"0122991249"}
         ]},
