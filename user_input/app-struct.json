@@ -1,45 +1,34 @@
 {
-    "pages":{
-      "page":[
-        {"caption":"Home","type":"login","bg-col":"yellow","text-col":"black"},
-        {"caption":"About","type":""},
-        {"caption":"Photos","type":"list-paginate","listItem":[
-          {"listCaption":"Jill","listDescription":""},
-          {"listCaption":"Eve","listDescription":"test ing"},
-          {"listCaption":"Adam"},
-          {"listCaption":"Adam"},
-          {"listCaption":"Adam"},
-          {"listCaption":"Syabil","listDescription":"0122991249"}
-        ]},
-        {"caption":"Contact","type":"list","listItem":[
-          {"listCaption":"Jill","listDescription":""},
-          {"listCaption":"Eve","listDescription":"test ing"},
-          {"listCaption":"Adam"},
-          {"listCaption":"Adam"},
-          {"listCaption":"Adam"},
-          {"listCaption":"Syabil","listDescription":"0122991249"}
-        ]},
-
-        {"caption":"Info","type":"tabular", "tabularItem":[
-          {"tabCaption":"whats new","icon":"?"},
-          {"tabCaption":"health","icon":"?"},
-          {"tabCaption":"survey","icon":"?","page":[
-            {"caption":"sport-facility"},
-            {"caption":"college-facility"},
-            {"caption":"?"}
-          ]}
-        ]},
-
-        {"caption":"LuckyTOYOU"},
-        {"caption":"LuckyTOMe"}
-        
-      ]
-    },
-  
-    "layout":"template2",
-    "backgroundColour":"danger",
-    "framework":"bootstrap"
-    
-    
-  
+  "root":{
+    "layout":"linktree",
+    "backgroundColour":"black",
+    "framework":"w3css",
+    "page":[
+      {"caption":"Home","type":"login"},
+      {"caption":"About","type":""},
+      {"caption":"LuckyTOYOU"},
+      {"caption":"Photos","type":"list-paginate","listItem":[
+        {"listCaption":"Jill","listDescription":""},
+        {"listCaption":"Eve","listDescription":"test ing"},
+        {"listCaption":"Adam"},
+        {"listCaption":"Adam"},
+        {"listCaption":"Adam"},
+        {"listCaption":"Syabil","listDescription":"0122991249"}
+      ]},
+      {"caption":"Contact","type":"list","listItem":[
+        {"listCaption":"Jill","listDescription":""},
+        {"listCaption":"Eve","listDescription":"test ing"},
+        {"listCaption":"Adam"},
+        {"listCaption":"Adam"},
+        {"listCaption":"Adam"},
+        {"listCaption":"Syabil","listDescription":"0122991249"}
+      ]}
+      
+    ]
   }
+
+  
+  
+  
+
+}

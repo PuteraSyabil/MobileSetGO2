@@ -42,9 +42,9 @@ var createLinkJSFile = function()
     '\n\tapp.config(function($routeProvider) {'+
       '\n\t\t$routeProvider';
 
-      while(i <app.pages.page.length)
+      while(i <app.root.page.length)
       {
-        linkName=app.pages.page[i].caption;
+        linkName=app.root.page[i].caption;
         linkName=linkName.replace(/\s/g, '');
           if(i==0)
           {
@@ -63,7 +63,7 @@ var createLinkJSFile = function()
       
       linkJS+='\n});';
 
-      if(app.layout=="template2")
+      if(app.root.layout=="hamburger")
       {
         linkJS+='function w3_open() {'+
         'document.getElementById("mySidebar").style.display = "block";'+
@@ -79,29 +79,27 @@ var createLinkJSFile = function()
 
     
 }
+var createLinksSubPage = function(){
+    
+}
 
 var createSubPage = function(){
     let readManipulateFile = desktopDir+'/test_new_template';
     var i= 0;
     var subFileName="";
-    
-
-    
-
-
-    if(app.layout=="template3")
+    if(app.root.layout=="linktree")
     {
         
-        while(i <app.pages.page.length)
+        while(i <app.root.page.length)
         {
             try {
-                subFileName=app.pages.page[i].caption;
+                subFileName=app.root.page[i].caption;
                 subFileName=subFileName.replace(/\s/g, '');
-                if(app.framework=="w3css"){
-                    fs.copySync('layout_template/'+app.framework+'/subpage/'+app.layout+'/subpage.html', desktopDir+'/test_new_template/'+subFileName+'.html');
+                if(app.root.framework=="w3css"){
+                    fs.copySync('layout_template/'+app.root.framework+'/subpage/'+app.root.layout+'/subpage.html', desktopDir+'/test_new_template/'+subFileName+'.html');
                 }
                 else{
-                    fs.copySync('layout_template/'+app.framework+'/subpage/'+app.layout+'/subpage.html', desktopDir+'/test_new_template/'+subFileName+'.html');
+                    fs.copySync('layout_template/'+app.root.framework+'/subpage/'+app.root.layout+'/subpage.html', desktopDir+'/test_new_template/'+subFileName+'.html');
                 }
                 
                 
@@ -113,7 +111,7 @@ var createSubPage = function(){
                 fs.writeFileSync(desktopDir+'/test_new_template/'+subFileName+'.html',spanHTML,'utf8');
 
 
-                console.log(app.pages.page[i].caption+' subpage created!');
+                console.log(app.root.page[i].caption+' subpage created!');
               } catch (err) {
                 console.error(err)
               }
@@ -123,9 +121,9 @@ var createSubPage = function(){
     }
     else
     {
-        while(i <app.pages.page.length)
+        while(i <app.root.page.length)
         {
-            subFileName = app.pages.page[i].caption;
+            subFileName = app.root.page[i].caption;
             subFileName=subFileName.replace(/\s/g, '');
             fs.writeFileSync(readManipulateFile+'/'+subFileName+'.html',subFileName,'utf8');
 
@@ -150,14 +148,14 @@ var writeNavHTMLFile = function(){
     var i = 0
 
     //BOOTSTRAP W3CSS
-    if(app.framework=="w3css")
+    if(app.root.framework=="w3css")
     {
-    if(app.layout=="template1")
+    if(app.root.layout=="tab")
     {
-        while(i <app.pages.page.length)
+        while(i <app.root.page.length)
         {
-            captionText = app.pages.page[i].caption;
-            linkName = app.pages.page[i].caption;
+            captionText = app.root.page[i].caption;
+            linkName = app.root.page[i].caption;
             linkName =linkName.replace(/\s/g, '');
             if(i==0)
             {
@@ -174,12 +172,12 @@ var writeNavHTMLFile = function(){
             i++;
         }
     }
-    else if(app.layout=="template2")
+    else if(app.root.layout=="hamburger")
     {
-        while(i <app.pages.page.length)
+        while(i <app.root.page.length)
         {
-            captionText = app.pages.page[i].caption;
-            linkName = app.pages.page[i].caption;
+            captionText = app.root.page[i].caption;
+            linkName = app.root.page[i].caption;
             linkName =linkName.replace(/\s/g, '');
             if(i==0)
             {
@@ -196,12 +194,12 @@ var writeNavHTMLFile = function(){
             i++;
         }
     }
-    else if(app.layout=="template3")
+    else if(app.root.layout=="linktree")
     {
-        while(i<app.pages.page.length)
+        while(i<app.root.page.length)
         {
-            captionText = app.pages.page[i].caption;
-            linkName = app.pages.page[i].caption;
+            captionText = app.root.page[i].caption;
+            linkName = app.root.page[i].caption;
             linkName =linkName.replace(/\s/g, '');
             
 
@@ -230,14 +228,14 @@ var writeNavHTMLFile = function(){
 
     }
     //BOOTSTRAP FRAMEWORK
-    else if(app.framework=="bootstrap")
+    else if(app.root.framework=="bootstrap")
     {
-    if(app.layout=="template1")
+    if(app.root.layout=="tab")
     {
-        while(i <app.pages.page.length)
+        while(i <app.root.page.length)
         {
-            captionText = app.pages.page[i].caption;
-            linkName = app.pages.page[i].caption;
+            captionText = app.root.page[i].caption;
+            linkName = app.root.page[i].caption;
             linkName =linkName.replace(/\s/g, '');
             if(i==0)
             {
@@ -254,12 +252,12 @@ var writeNavHTMLFile = function(){
             i++;
         }
     }
-    else if(app.layout=="template2")
+    else if(app.root.layout=="hamburger")
     {
-        while(i <app.pages.page.length)
+        while(i <app.root.page.length)
         {
-            captionText = app.pages.page[i].caption;
-            linkName = app.pages.page[i].caption;
+            captionText = app.root.page[i].caption;
+            linkName = app.root.page[i].caption;
             linkName =linkName.replace(/\s/g, '');
             if(i==0)
             {
@@ -277,12 +275,12 @@ var writeNavHTMLFile = function(){
             i++;
         }
     }
-    else if(app.layout=="template3")
+    else if(app.root.layout=="linktree")
     {
-        while(i<app.pages.page.length)
+        while(i<app.root.page.length)
         {
-            captionText = app.pages.page[i].caption;
-            linkName = app.pages.page[i].caption;
+            captionText = app.root.page[i].caption;
+            linkName = app.root.page[i].caption;
             linkName =linkName.replace(/\s/g, '');
             
 
@@ -328,7 +326,7 @@ var generateLayout = function(){
     }
     //copy to desktop
     try {
-        fs.copySync('layout_template/'+app.framework+'/'+app.layout, desktopDir+'/test_new_template')
+        fs.copySync('layout_template/'+app.root.framework+'/'+app.root.layout, desktopDir+'/test_new_template')
         console.log('success created to!'+desktopDir)
         writeNavHTMLFile();
       } catch (err) {
@@ -338,14 +336,14 @@ var generateLayout = function(){
 }
 
 var writeBackgroundColour = function(){
-    bgCol = app.backgroundColour;
+    bgCol = app.root.backgroundColour;
     let readManipulateFile = desktopDir+'/test_new_template/main.html';
     const $ = cheerio.load(fs.readFileSync(readManipulateFile,'utf8'));
 
 
-    if(app.framework=="w3css"){
+    if(app.root.framework=="w3css"){
 
-    if(app.layout=="template1")
+    if(app.root.layout=="tab")
     {
         var oldNavCol=$('#navItem').attr('class');
         var oldFooterCol=$('#footerItem').attr('class');
@@ -363,7 +361,7 @@ var writeBackgroundColour = function(){
         fs.writeFileSync(readManipulateFile,colHTML,'utf8');
 
     }
-    else if(app.layout=="template2")
+    else if(app.root.layout=="hamburger")
     {
         var oldCol=$('#backgroundColItem').attr('class');
         var newCol=('w3-'+bgCol)+encodeURIComponent(oldCol);
@@ -374,7 +372,7 @@ var writeBackgroundColour = function(){
         fs.writeFileSync(readManipulateFile,colHTML,'utf8');
 
     }
-    else if(app.layout=="template3")
+    else if(app.root.layout=="linktree")
     {
         var oldCol=$('#backgroundColItem').attr('class');
         var newCol=('w3-container w3-'+bgCol)+encodeURIComponent(oldCol);
@@ -404,9 +402,9 @@ var writeBackgroundColour = function(){
         
     }
     }
-    else if(app.framework=="bootstrap")
+    else if(app.root.framework=="bootstrap")
     {
-        if(app.layout=="template1")
+        if(app.root.layout=="tab")
     {
         var oldNavCol=$('#navItemCol').attr('class');
         var oldFooterCol=$('#footerItem').attr('class');
@@ -424,7 +422,7 @@ var writeBackgroundColour = function(){
         fs.writeFileSync(readManipulateFile,colHTML,'utf8');
 
     }
-    else if(app.layout=="template2")
+    else if(app.root.layout=="hamburger")
     {
         var oldCol=$('#backgroundColItem').attr('class');
         var newCol=('bg-'+bgCol)+encodeURIComponent(oldCol);
@@ -435,7 +433,7 @@ var writeBackgroundColour = function(){
         fs.writeFileSync(readManipulateFile,colHTML,'utf8');
 
     }
-    else if(app.layout=="template3")
+    else if(app.root.layout=="linktree")
     {
         var oldCol=$('#backgroundColItem').attr('class');
         var newCol=('bg-'+bgCol)+encodeURIComponent(oldCol);
@@ -467,20 +465,20 @@ var writeBackgroundColour = function(){
 
 var changeSubPageCol = function(){
     var i = 0;
-    while(i<app.pages.page.length)
+    while(i<app.root.page.length)
     {
-        let linkName = app.pages.page[i].caption;
+        let linkName = app.root.page[i].caption;
         linkName =linkName.replace(/\s/g, '');
 
         let readManipulateSubFile = desktopDir+'/test_new_template/'+linkName+'.html';
         let $subfile = cheerio.load(fs.readFileSync(readManipulateSubFile,'utf8'));
 
         var oldSubPageCol = $subfile('#spanItem').attr('class');
-        if(app.framework=="w3css")
+        if(app.root.framework=="w3css")
         {
             var newSubPageCol = ('w3-'+bgCol)+encodeURIComponent(oldSubPageCol);
         }
-        else if(app.framework=="bootstrap")
+        else if(app.root.framework=="bootstrap")
         {
             var newSubPageCol = ('bg-'+bgCol)+encodeURIComponent(oldSubPageCol);
         }
@@ -506,106 +504,106 @@ var generateLayoutType = function()
 {
     var i = 0;
 
-    while(i<app.pages.page.length)
+    while(i<app.root.page.length)
     {
-        if(app.pages.page[i].type=="login")
+        if(app.root.page[i].type=="login")
         {
-            if(app.layout=="template3")
+            if(app.root.layout=="linktree")
             {
-               var temp = fs.readFileSync('layout_template/'+app.framework+'/page_type/'+app.pages.page[i].type+'/'+app.pages.page[i].type+'.html','utf8',);
-               fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html',temp);
+               var temp = fs.readFileSync('layout_template/'+app.root.framework+'/page_type/'+app.root.page[i].type+'/'+app.root.page[i].type+'.html','utf8',);
+               fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.page[i].caption+'.html',temp);
             }
             else
             {
-                fs.copySync('layout_template/'+app.framework+'/page_type/'+app.pages.page[i].type+'/'+app.pages.page[i].type+'.html', desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html');
+                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.page[i].type+'/'+app.root.page[i].type+'.html', desktopDir+'/test_new_template/'+app.root.page[i].caption+'.html');
             }
             
             console.log('copy login');
         }
-        else if(app.pages.page[i].type=="list-paginate")
+        else if(app.root.page[i].type=="list-paginate")
         {
 
 
-            if(app.layout=="template3")
+            if(app.root.layout=="linktree")
             {
-                var temp = fs.readFileSync('layout_template/'+app.framework+'/page_type/'+app.pages.page[i].type+'/'+app.pages.page[i].type+'.html','utf8',);
-                fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html',temp);
+                var temp = fs.readFileSync('layout_template/'+app.root.framework+'/page_type/'+app.root.page[i].type+'/'+app.root.page[i].type+'.html','utf8',);
+                fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.page[i].caption+'.html',temp);
             }
             else
             {
-                fs.copySync('layout_template/'+app.framework+'/page_type/'+app.pages.page[i].type+'/'+app.pages.page[i].type+'.html', desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html');
+                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.page[i].type+'/'+app.root.page[i].type+'.html', desktopDir+'/test_new_template/'+app.root.page[i].caption+'.html');
                 
 
               
             }
 
             //create obj file
-                fs.copySync('layout_template/'+app.framework+'/page_type/'+app.pages.page[i].type+'/'+app.pages.page[i].type+'-obj.js', desktopDir+'/test_new_template/'+app.pages.page[i].type+'-obj.js');
+                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.page[i].type+'/'+app.root.page[i].type+'-obj.js', desktopDir+'/test_new_template/'+app.root.page[i].type+'-obj.js');
                 var obj ="";
-                for(var j =0;j<app.pages.page[i].listItem.length;j++)
+                for(var j =0;j<app.root.page[i].listItem.length;j++)
                 {
-                    obj='{"listCaption":"'+app.pages.page[i].listItem[j].listCaption+'","listDescription":"'+app.pages.page[i].listItem[j].listDescription+'"},\n';
+                    obj='{"listCaption":"'+app.root.page[i].listItem[j].listCaption+'","listDescription":"'+app.root.page[i].listItem[j].listDescription+'"},\n';
                     
-                    fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].type+'-obj.js',obj);
+                    fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.page[i].type+'-obj.js',obj);
                 }
-                fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].type+'-obj.js',"];")
+                fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.page[i].type+'-obj.js',"];")
 
                 console.log("copy pagination");
             
         }
-        else if(app.pages.page[i].type=="list")
+        else if(app.root.page[i].type=="list")
         {
-            if(app.layout=="template3")
+            if(app.root.layout=="linktree")
             {
-               var temp = fs.readFileSync('layout_template/'+app.framework+'/page_type/'+app.pages.page[i].type+'/'+app.pages.page[i].type+'.html','utf8',);
-               fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html',temp);
+               var temp = fs.readFileSync('layout_template/'+app.root.framework+'/page_type/'+app.root.page[i].type+'/'+app.root.page[i].type+'.html','utf8',);
+               fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.page[i].caption+'.html',temp);
 
                var j=0;
-               while(j<app.pages.page[i].listItem.length)
+               while(j<app.root.page[i].listItem.length)
                {
-                if(app.framework=="w3css")
+                if(app.root.framework=="w3css")
                 {
-                    var tempLi= '<li><span class="w3-large">'+app.pages.page[i].listItem[j].listCaption+'</span><br><span>'+app.pages.page[i].listItem[j].listDescription+'</span></li>\n'
-                    fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html',tempLi);
+                    var tempLi= '<li><span class="w3-large">'+app.root.page[i].listItem[j].listCaption+'</span><br><span>'+app.root.page[i].listItem[j].listDescription+'</span></li>\n'
+                    fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.page[i].caption+'.html',tempLi);
                 }
                 else
                 {
-                    var tempLi= '<li class="list-group-item"><h5>'+app.pages.page[i].listItem[j].listCaption+'</h5><br><p>'+app.pages.page[i].listItem[j].listDescription+'</p></li>\n'
-                    fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html',tempLi);
+                    var tempLi= '<li class="list-group-item"><h5>'+app.root.page[i].listItem[j].listCaption+'</h5><br><p>'+app.root.page[i].listItem[j].listDescription+'</p></li>\n'
+                    fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.page[i].caption+'.html',tempLi);
                 }
                 j++;
                }
             }
             else
             {
-                fs.copySync('layout_template/'+app.framework+'/page_type/'+app.pages.page[i].type+'/'+app.pages.page[i].type+'.html', desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html');
+                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.page[i].type+'/'+app.root.page[i].type+'.html', desktopDir+'/test_new_template/'+app.root.page[i].caption+'.html');
                 var j=0;
-                while(j<app.pages.page[i].listItem.length)
+                while(j<app.root.page[i].listItem.length)
                 {
-                    if(app.framework=="w3css")
+                    if(app.root.framework=="w3css")
                     {
-                        var tempLi= '<li><span class="w3-large">'+app.pages.page[i].listItem[j].listCaption+'</span><br><span>'+app.pages.page[i].listItem[j].listDescription+'</span></li>\n'
-                        fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html',tempLi);
+                        var tempLi= '<li><span class="w3-large">'+app.root.page[i].listItem[j].listCaption+'</span><br><span>'+app.root.page[i].listItem[j].listDescription+'</span></li>\n'
+                        fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.page[i].caption+'.html',tempLi);
                     }
                     else
                     {
-                        var tempLi= '<li class="list-group-item"><h5>'+app.pages.page[i].listItem[j].listCaption+'</h5><br><p>'+app.pages.page[i].listItem[j].listDescription+'</p></li>\n'
-                        fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html',tempLi);
+                        var tempLi= '<li class="list-group-item"><h5>'+app.root.page[i].listItem[j].listCaption+'</h5><br><p>'+app.root.page[i].listItem[j].listDescription+'</p></li>\n'
+                        fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.page[i].caption+'.html',tempLi);
                     }
                     j++;
                 }
             }
 
-            fs.appendFileSync(desktopDir+'/test_new_template/'+app.pages.page[i].caption+'.html','</ul>');
+            fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.page[i].caption+'.html','</ul>');
             console.log('copy list');
         }
-        else if(app.pages.page[i].type=="tabular")
+        else if(app.root.page[i].type=="tabular")
         {
             
         }
         else
         {
-            console.log(app.pages.page[i].caption+" has no type define")
+            console.log(app.root.page[i].caption+" has no type define")
         }
         i++;
     }
