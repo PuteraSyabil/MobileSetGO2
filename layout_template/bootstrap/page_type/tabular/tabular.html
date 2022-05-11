@@ -1,0 +1,17 @@
+
+<style>
+    .column {
+  float: left;
+  width: 33%;
+  padding: 10px;
+  height: 150px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+<div class="row container" style="text-align:center">
