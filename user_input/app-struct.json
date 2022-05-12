@@ -23,15 +23,53 @@
         {"listCaption":"Syabil","listDescription":"0122991249"}
       ]},
       {"caption":"Survey","type":"tabular", "tabularItem":[
-        {"caption":"Cafe Survey","icon":"fa-solid fa-coffee","root":{
-          "layout":"linktree",
-          "backgroundColour":"danger",
-          "framework":"bootstrap",
-          "links":[
-            {"caption":"About1","type":""},
-            {"caption":"About2","type":""},
-            {"caption":"About3","type":""}
-          ]
+        {"caption":"Cafe Survey","icon":"fa-solid fa-coffee","link":{
+          "root":{
+                "layout":"linktree",
+                "backgroundColour":"danger",
+                "framework":"bootstrap",
+                "links":[
+                  {"caption":"About1","type":""},
+                  {"caption":"About2","type":""},
+                  {"caption":"About3","type":""},
+                  {"caption":"Survey1","type":"tabular", "tabularItem":[
+                    {"caption":"Cafe Survey","icon":"fa-solid fa-coffee","link":{
+                      "root":{
+                            "layout":"linktree",
+                            "backgroundColour":"danger",
+                            "framework":"bootstrap",
+                            "links":[
+                              {"caption":"About1","type":""},
+                              {"caption":"About2","type":""},
+                              {"caption":"About3","type":""},
+                              {"caption":"Survey2","type":"tabular", "tabularItem":[
+                                {"caption":"Cafe Survey","icon":"fa-solid fa-coffee","link":{
+                                  "root":{
+                                        "layout":"linktree",
+                                        "backgroundColour":"danger",
+                                        "framework":"bootstrap",
+                                        "links":[
+                                          {"caption":"About1","type":""},
+                                          {"caption":"About2","type":""},
+                                          {"caption":"About3","type":""}
+                                          
+                                          
+                                        ]}
+                                }},
+                                {"caption":"Healthcare Survey","icon":"?"},
+                                {"caption":"IT Survey  ","icon":"?"},
+                                {"caption":"Faculty Survey","icon":"?"}
+                                
+                              ]}
+                              
+                            ]}
+                    }},
+                    {"caption":"Healthcare Survey","icon":"?"},
+                    {"caption":"IT Survey  ","icon":"?"},
+                    {"caption":"Faculty Survey","icon":"?"}
+                    
+                  ]}
+                ]}
         }},
         {"caption":"Healthcare Survey","icon":"?"},
         {"caption":"IT Survey  ","icon":"?"},

@@ -17,6 +17,7 @@ var rl = readline.createInterface({
 });
 
 var app = "";
+var currentWorkingFile=desktopDir+'/test_new_template';
 
 var readJSONTemplate = function(){
     try{
@@ -36,7 +37,7 @@ var createLinkJSFile = function()
     var i= 0;
     var linkText="";
     var linkName="";
-    let readManipulateFile = desktopDir+'/test_new_template';
+    let readManipulateFile = currentWorkingFile;
 
      var linkJS = 'var app = angular.module("myApp", ["ngRoute"]);'+
     '\n\tapp.config(function($routeProvider) {'+
@@ -79,12 +80,9 @@ var createLinkJSFile = function()
 
     
 }
-var createLinksSubPage = function(){
-    
-}
 
 var createSubPage = function(){
-    let readManipulateFile = desktopDir+'/test_new_template';
+    let readManipulateFile =currentWorkingFile;
     var i= 0;
     var subFileName="";
     if(app.root.layout=="linktree")
@@ -96,19 +94,19 @@ var createSubPage = function(){
                 subFileName=app.root.links[i].caption;
                 subFileName=subFileName.replace(/\s/g, '');
                 if(app.root.framework=="w3css"){
-                    fs.copySync('layout_template/'+app.root.framework+'/subpage/'+app.root.layout+'/subpage.html', desktopDir+'/test_new_template/'+subFileName+'.html');
+                    fs.copySync('layout_template/'+app.root.framework+'/subpage/'+app.root.layout+'/subpage.html', currentWorkingFile+'/'+subFileName+'.html');
                 }
                 else{
-                    fs.copySync('layout_template/'+app.root.framework+'/subpage/'+app.root.layout+'/subpage.html', desktopDir+'/test_new_template/'+subFileName+'.html');
+                    fs.copySync('layout_template/'+app.root.framework+'/subpage/'+app.root.layout+'/subpage.html', currentWorkingFile+'/'+subFileName+'.html');
                 }
                 
                 
-                let readManipulateFile = desktopDir+'/test_new_template/'+subFileName+'.html';
+                let readManipulateFile = currentWorkingFile+'/'+subFileName+'.html';
                 const $ = cheerio.load(fs.readFileSync(readManipulateFile,'utf8'));
                 //span naming shouldnt be here
                 $('#spanItem').append('<span class="w3-bar-item">'+subFileName+'</span>').html();
                 spanHTML=$('*').html();
-                fs.writeFileSync(desktopDir+'/test_new_template/'+subFileName+'.html',spanHTML,'utf8');
+                fs.writeFileSync(currentWorkingFile+'/'+subFileName+'.html',spanHTML,'utf8');
 
 
                 console.log(app.root.links[i].caption+' subpage created!');
@@ -138,7 +136,7 @@ var createSubPage = function(){
 }
 
 var writeNavHTMLFile = function(){
-    let readManipulateFile = desktopDir+'/test_new_template/main.html';
+    let readManipulateFile = currentWorkingFile+'/main.html';
     const $ = cheerio.load(fs.readFileSync(readManipulateFile,'utf8'));
 
 
@@ -224,7 +222,6 @@ var writeNavHTMLFile = function(){
     }
 
     }
-    //BOOTSTRAP FRAMEWORK
     else if(app.root.framework=="bootstrap")
     {
     if(app.root.layout=="tab")
@@ -317,13 +314,14 @@ var writeNavHTMLFile = function(){
 
 var generateLayout = function(){
 
+
     //allow user to remove/edit the json data by overwritting it
-    if(fs.existsSync(desktopDir+'/test_new_template')){
-        fs.removeSync(desktopDir+'/test_new_template');
+    if(fs.existsSync(currentWorkingFile)){
+        fs.removeSync(currentWorkingFile);
     }
-    //copy to desktop
+    
     try {
-        fs.copySync('layout_template/'+app.root.framework+'/'+app.root.layout, desktopDir+'/test_new_template')
+        fs.copySync('layout_template/'+app.root.framework+'/'+app.root.layout, currentWorkingFile)
         console.log('success created to!'+desktopDir)
         writeNavHTMLFile();
       } catch (err) {
@@ -333,9 +331,10 @@ var generateLayout = function(){
       writeBackgroundColour();
 }
 
+
 var writeBackgroundColour = function(){
     bgCol = app.root.backgroundColour;
-    let readManipulateFile = desktopDir+'/test_new_template/main.html';
+    let readManipulateFile = currentWorkingFile+'/main.html';
     const $ = cheerio.load(fs.readFileSync(readManipulateFile,'utf8'));
 
 
@@ -470,7 +469,7 @@ var changeSubPageCol = function(){
         let linkName = app.root.links[i].caption;
         linkName =linkName.replace(/\s/g, '');
 
-        let readManipulateSubFile = desktopDir+'/test_new_template/'+linkName+'.html';
+        let readManipulateSubFile = currentWorkingFile+'/'+linkName+'.html';
         let $subfile = cheerio.load(fs.readFileSync(readManipulateSubFile,'utf8'));
 
         var oldSubPageCol = $subfile('#spanItem').attr('class');
@@ -511,13 +510,12 @@ var generateLayoutType = function()
             if(app.root.layout=="linktree")
             {
                var temp = fs.readFileSync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html','utf8',);
-               fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html',temp);
+               fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',temp);
             }
             else
             {
-                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html', desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html');
-            }
-            
+                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html', currentWorkingFile+'/'+app.root.links[i].caption+'.html');
+            }     
             console.log('copy login');
         }
         else if(app.root.links[i].type=="list-paginate")
@@ -527,24 +525,24 @@ var generateLayoutType = function()
             if(app.root.layout=="linktree")
             {
                 var temp = fs.readFileSync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html','utf8',);
-                fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html',temp);
+                fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',temp);
             }
             else
             {
-                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html', desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html');
+                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html', currentWorkingFile+'/'+app.root.links[i].caption+'.html');
               
             }
 
             //create obj file
-                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'-obj.js', desktopDir+'/test_new_template/'+app.root.links[i].type+'-obj.js');
+                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'-obj.js', currentWorkingFile+'/'+app.root.links[i].type+'-obj.js');
                 var obj ="";
                 for(var j =0;j<app.root.links[i].listItem.length;j++)
                 {
                     obj='{"listCaption":"'+app.root.links[i].listItem[j].listCaption+'","listDescription":"'+app.root.links[i].listItem[j].listDescription+'"},\n';
                     
-                    fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].type+'-obj.js',obj);
+                    fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].type+'-obj.js',obj);
                 }
-                fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].type+'-obj.js',"];")
+                fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].type+'-obj.js',"];")
 
                 console.log("copy pagination");
             
@@ -554,7 +552,7 @@ var generateLayoutType = function()
             if(app.root.layout=="linktree")
             {
                var temp = fs.readFileSync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html','utf8',);
-               fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html',temp);
+               fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',temp);
 
                var j=0;
                while(j<app.root.links[i].listItem.length)
@@ -562,37 +560,37 @@ var generateLayoutType = function()
                 if(app.root.framework=="w3css")
                 {
                     var tempLi= '<li><span class="w3-large">'+app.root.links[i].listItem[j].listCaption+'</span><br><span>'+app.root.links[i].listItem[j].listDescription+'</span></li>\n'
-                    fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html',tempLi);
+                    fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',tempLi);
                 }
                 else
                 {
                     var tempLi= '<li class="list-group-item"><h5>'+app.root.links[i].listItem[j].listCaption+'</h5><br><p>'+app.root.links[i].listItem[j].listDescription+'</p></li>\n'
-                    fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html',tempLi);
+                    fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',tempLi);
                 }
                 j++;
                }
             }
             else
             {
-                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html', desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html');
+                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html', currentWorkingFile+'/'+app.root.links[i].caption+'.html');
                 var j=0;
                 while(j<app.root.links[i].listItem.length)
                 {
                     if(app.root.framework=="w3css")
                     {
                         var tempLi= '<li><span class="w3-large">'+app.root.links[i].listItem[j].listCaption+'</span><br><span>'+app.root.links[i].listItem[j].listDescription+'</span></li>\n'
-                        fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html',tempLi);
+                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',tempLi);
                     }
                     else
                     {
                         var tempLi= '<li class="list-group-item"><h5>'+app.root.links[i].listItem[j].listCaption+'</h5><br><p>'+app.root.links[i].listItem[j].listDescription+'</p></li>\n'
-                        fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html',tempLi);
+                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',tempLi);
                     }
                     j++;
                 }
             }
 
-            fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html','</ul>');
+            fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html','</ul>');
             console.log('copy list');
         }
         else if(app.root.links[i].type=="tabular")
@@ -601,14 +599,14 @@ var generateLayoutType = function()
             if(app.root.layout=="linktree")
             {
                 var temp = fs.readFileSync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html','utf8',);
-                fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html',temp);
+                fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',temp);
                 
                 var j=0;
                 while(j<app.root.links[i].tabularItem.length)
                 {
                     if(app.root.framework=="w3css")
                     {
-                        var tempLi= '\n<a href=""><div class="column w3-card-2 w3-hover-shadow w3-center" style="width:33%">'+
+                        var tempLi= '\n<a href="'+app.root.links[i].tabularItem[j].caption.replace(/\s/g, '')+'/main.html"><div class="column w3-card-2 w3-hover-shadow w3-center" style="width:33%">'+
                         '\n\t<span style="font-size: 48px; color: Dodgerblue;">'+
                             '\n\t\t<i class="'+app.root.links[i].tabularItem[j].icon+'"></i>'+
                         '\n\t</span>'+
@@ -617,11 +615,11 @@ var generateLayoutType = function()
                         '\n\t</div>'+
                       '\n</div></a>'
                         
-                        fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html',tempLi);
+                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',tempLi);
                     }
                     else
                     {
-                        var tempLi='\n<a href=""><div class="column card" style="width:33%">'+
+                        var tempLi='\n<a href="'+app.root.links[i].tabularItem[j].caption.replace(/\s/g, '')+'/main.html"><div class="column card" style="width:33%">'+
                         '\n\t<span style="font-size: 48px; color: Dodgerblue;">'+
                         '\n\t\t<i class="'+app.root.links[i].tabularItem[j].icon+'"></i>'+
                         '\n\t</span>'+
@@ -629,33 +627,39 @@ var generateLayoutType = function()
                         '\n\t\t<h4 class="card-title">'+app.root.links[i].tabularItem[j].caption+'</h4>'+
                         '\n\t</div>'+
                         '\n</div></a>';
-                        fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html',tempLi);
+                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',tempLi);
                     }
                     
-                    //   if(app.root.links[i].tabularItem[j].root)
-                    //   {
-                    //       app=app.root.links[i].tabularItem[j].root;
-                    //       generateLayout();
-                    //   }
-
+                    var tempWorkingFile=currentWorkingFile;
+                    var tempApp=app;
+                      if(app.root.links[i].tabularItem[j].link!=null)
+                      {
+                          
+                          currentWorkingFile = currentWorkingFile+'/'+app.root.links[i].tabularItem[j].caption.replace(/\s/g, '');
+                          app=app.root.links[i].tabularItem[j].link;
+                          
+                          generateLayout();
+                      }
+                      app=tempApp;
+                      currentWorkingFile=tempWorkingFile;
 
                     j++;
 
 
                 }
 
-                fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html','\n</div>');
+                fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html','\n</div>');
                 console.log("copy tabular")
             }
             else
             {
-                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html', desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html');
+                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html', currentWorkingFile+'/'+app.root.links[i].caption+'.html');
                 var j=0;
                 while(j<app.root.links[i].tabularItem.length)
                 {
                     if(app.root.framework=="w3css")
                     {
-                        var tempLi= '\n<a href=""><div class="column w3-card-2 w3-hover-shadow w3-center" style="width:33%">'+
+                        var tempLi= '\n<a href="'+app.root.links[i].tabularItem[j].caption.replace(/\s/g, '')+'/main.html"><div class="column w3-card-2 w3-hover-shadow w3-center" style="width:33%">'+
                         '\n\t<span style="font-size: 48px; color: Dodgerblue;">'+
                             '\n\t\t<i class="'+app.root.links[i].tabularItem[j].icon+'"></i>'+
                         '\n\t</span>'+
@@ -664,15 +668,13 @@ var generateLayoutType = function()
                         '\n\t</div>'+
                       '\n</div></a>'
                         
-                        fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html',tempLi);
-
-                            
-                        
+                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',tempLi);
+ 
                 
                     }
                     else
                     {
-                        var tempLi='\n<a href=""><div class="column card" style="width:33%">'+
+                        var tempLi='\n<a href="'+app.root.links[i].tabularItem[j].caption.replace(/\s/g, '')+'/main.html"><div class="column card" style="width:33%">'+
                         '\n\t<span style="font-size: 48px; color: Dodgerblue;">'+
                         '\n\t\t<i class="'+app.root.links[i].tabularItem[j].icon+'"></i>'+
                         '\n\t</span>'+
@@ -680,12 +682,25 @@ var generateLayoutType = function()
                         '\n\t\t<h4 class="card-title">'+app.root.links[i].tabularItem[j].caption+'</h4>'+
                         '\n\t</div>'+
                         '\n</div></a>';
-                        fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html',tempLi);
+                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',tempLi);
                     }
+
+                    var tempWorkingFile=currentWorkingFile;
+                    var tempApp=app;
+                    if(app.root.links[i].tabularItem[j].link)
+                      {
+                          
+                          currentWorkingFile = currentWorkingFile+'/'+app.root.links[i].tabularItem[j].caption.replace(/\s/g, '');
+                          app=app.root.links[i].tabularItem[j].link;
+                          
+                          generateLayout();
+                      }
+                      app=tempApp;
+                      currentWorkingFile=tempWorkingFile;
                     j++;
                 }
 
-                fs.appendFileSync(desktopDir+'/test_new_template/'+app.root.links[i].caption+'.html','\n</div>');
+                fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html','\n</div>');
                 console.log("copy tabular")
 
                 
@@ -708,8 +723,8 @@ const run = async()=>
     clear();
     //to initialised app object on the first level from json file
     readJSONTemplate();
+    console.log(app.root.framework)
     generateLayout();
-    console.log("end");
     process.exit(1);
 
     
