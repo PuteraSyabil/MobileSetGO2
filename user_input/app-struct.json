@@ -1,12 +1,12 @@
 {
   "root":{
     "layout":"linktree",
-    "backgroundColour":"danger",
-    "framework":"bootstrap",
+    "backgroundColour":"teal",
+    "framework":"w3css",
     "links":[
-      {"caption":"Home","type":"login"},
-      {"caption":"About","type":""},
-      {"caption":"Photos","type":"list-paginate","listItem":[
+      {"caption":"Home Login Page","type":"login"},
+      {"caption":"dummy empty page","type":""},
+      {"caption":"Contact List Paginate","type":"list-paginate","listItem":[
         {"listCaption":"Jill","listDescription":""},
         {"listCaption":"Eve","listDescription":"test ing"},
         {"listCaption":"Adam"},
@@ -14,7 +14,7 @@
         {"listCaption":"Adam"},
         {"listCaption":"Syabil","listDescription":"0122991249"}
       ]},
-      {"caption":"Contact","type":"list","listItem":[
+      {"caption":"Contact List","type":"list","listItem":[
         {"listCaption":"Jill","listDescription":""},
         {"listCaption":"Eve","listDescription":"test ing"},
         {"listCaption":"Adam"},
@@ -25,58 +25,35 @@
       {"caption":"Survey","type":"tabular", "tabularItem":[
         {"caption":"Cafe Survey","icon":"fa-solid fa-coffee","link":{
           "root":{
-                "layout":"linktree",
-                "backgroundColour":"danger",
-                "framework":"bootstrap",
+                "layout":"tab",
+                "backgroundColour":"yellow",
+                "framework":"w3css",
                 "links":[
-                  {"caption":"About1","type":""},
-                  {"caption":"About2","type":""},
-                  {"caption":"About3","type":""},
-                  {"caption":"Survey1","type":"tabular", "tabularItem":[
-                    {"caption":"Cafe Survey","icon":"fa-solid fa-coffee","link":{
+                  {"caption":"Mak Ngah Cafe","type":""},
+                  {"caption":"Arked Meranti","type":""},
+                  {"caption":"Arked Angkasa","type":"tabular", "tabularItem":[
+                    {"caption":"Pak Atong","icon":"fa-solid fa-bowl-food","link":{
                       "root":{
-                            "layout":"linktree",
-                            "backgroundColour":"danger",
-                            "framework":"bootstrap",
-                            "links":[
-                              {"caption":"About1","type":""},
-                              {"caption":"About2","type":""},
-                              {"caption":"About3","type":""},
-                              {"caption":"Survey2","type":"tabular", "tabularItem":[
-                                {"caption":"Cafe Survey","icon":"fa-solid fa-coffee","link":{
-                                  "root":{
-                                        "layout":"linktree",
-                                        "backgroundColour":"danger",
-                                        "framework":"bootstrap",
-                                        "links":[
-                                          {"caption":"About1","type":""},
-                                          {"caption":"About2","type":""},
-                                          {"caption":"About3","type":""}
-                                          
-                                          
-                                        ]}
-                                }},
-                                {"caption":"Healthcare Survey","icon":"?"},
-                                {"caption":"IT Survey  ","icon":"?"},
-                                {"caption":"Faculty Survey","icon":"?"}
-                                
-                              ]}
-                              
-                            ]}
+                        "layout":"linktree",
+                        "backgroundColour":"danger",
+                        "framework":"bootstrap",
+                        "links":[
+                          {"caption":"Menu Survey","type":"fa-solid fa-list-dropdown"},
+                          {"caption":"Customer Service Survey","type":"fa-solid fa-user"}
+                        ]
+                      }
                     }},
-                    {"caption":"Healthcare Survey","icon":"?"},
-                    {"caption":"IT Survey  ","icon":"?"},
-                    {"caption":"Faculty Survey","icon":"?"}
-                    
+                    {"caption":"Dlaksa","icon":"fa-solid fa-bowl-food"},
+                    {"caption":"Western 123","icon":"fa-solid fa-bowl-food"}
                   ]}
                 ]}
         }},
-        {"caption":"Healthcare Survey","icon":"?"},
-        {"caption":"IT Survey  ","icon":"?"},
-        {"caption":"Faculty Survey","icon":"?"}
+        {"caption":"Healthcare Survey","icon":"fa-solid fa-briefcase-medical"},
+        {"caption":"IT Survey  ","icon":"fa-solid fa-computer"},
+        {"caption":"Faculty Survey","icon":"fa-solid fa-school-flag"}
         
       ]},
-      {"caption":"Product","type":""}
+      {"caption":"Product dummy empty file","type":""}
 
       
     ]

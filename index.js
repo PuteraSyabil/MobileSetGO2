@@ -104,7 +104,7 @@ var createSubPage = function(){
                 let readManipulateFile = currentWorkingFile+'/'+subFileName+'.html';
                 const $ = cheerio.load(fs.readFileSync(readManipulateFile,'utf8'));
                 //span naming shouldnt be here
-                $('#spanItem').append('<span class="w3-bar-item">'+subFileName+'</span>').html();
+                $('#spanItem').append('<span class="w3-bar-item">'+app.root.links[i].caption+'</span>').html();
                 spanHTML=$('*').html();
                 fs.writeFileSync(currentWorkingFile+'/'+subFileName+'.html',spanHTML,'utf8');
 
@@ -510,11 +510,11 @@ var generateLayoutType = function()
             if(app.root.layout=="linktree")
             {
                var temp = fs.readFileSync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html','utf8',);
-               fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',temp);
+               fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html',temp);
             }
             else
             {
-                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html', currentWorkingFile+'/'+app.root.links[i].caption+'.html');
+                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html', currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html');
             }     
             console.log('copy login');
         }
@@ -525,11 +525,11 @@ var generateLayoutType = function()
             if(app.root.layout=="linktree")
             {
                 var temp = fs.readFileSync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html','utf8',);
-                fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',temp);
+                fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html',temp);
             }
             else
             {
-                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html', currentWorkingFile+'/'+app.root.links[i].caption+'.html');
+                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html', currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html');
               
             }
 
@@ -552,7 +552,7 @@ var generateLayoutType = function()
             if(app.root.layout=="linktree")
             {
                var temp = fs.readFileSync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html','utf8',);
-               fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',temp);
+               fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html',temp);
 
                var j=0;
                while(j<app.root.links[i].listItem.length)
@@ -560,37 +560,37 @@ var generateLayoutType = function()
                 if(app.root.framework=="w3css")
                 {
                     var tempLi= '<li><span class="w3-large">'+app.root.links[i].listItem[j].listCaption+'</span><br><span>'+app.root.links[i].listItem[j].listDescription+'</span></li>\n'
-                    fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',tempLi);
+                    fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html',tempLi);
                 }
                 else
                 {
                     var tempLi= '<li class="list-group-item"><h5>'+app.root.links[i].listItem[j].listCaption+'</h5><br><p>'+app.root.links[i].listItem[j].listDescription+'</p></li>\n'
-                    fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',tempLi);
+                    fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html',tempLi);
                 }
                 j++;
                }
             }
             else
             {
-                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html', currentWorkingFile+'/'+app.root.links[i].caption+'.html');
+                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html', currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html');
                 var j=0;
                 while(j<app.root.links[i].listItem.length)
                 {
                     if(app.root.framework=="w3css")
                     {
                         var tempLi= '<li><span class="w3-large">'+app.root.links[i].listItem[j].listCaption+'</span><br><span>'+app.root.links[i].listItem[j].listDescription+'</span></li>\n'
-                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',tempLi);
+                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html',tempLi);
                     }
                     else
                     {
                         var tempLi= '<li class="list-group-item"><h5>'+app.root.links[i].listItem[j].listCaption+'</h5><br><p>'+app.root.links[i].listItem[j].listDescription+'</p></li>\n'
-                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',tempLi);
+                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html',tempLi);
                     }
                     j++;
                 }
             }
 
-            fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html','</ul>');
+            fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html','</ul>');
             console.log('copy list');
         }
         else if(app.root.links[i].type=="tabular")
@@ -599,7 +599,7 @@ var generateLayoutType = function()
             if(app.root.layout=="linktree")
             {
                 var temp = fs.readFileSync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html','utf8',);
-                fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',temp);
+                fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html',temp);
                 
                 var j=0;
                 while(j<app.root.links[i].tabularItem.length)
@@ -615,7 +615,7 @@ var generateLayoutType = function()
                         '\n\t</div>'+
                       '\n</div></a>'
                         
-                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',tempLi);
+                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html',tempLi);
                     }
                     else
                     {
@@ -627,7 +627,7 @@ var generateLayoutType = function()
                         '\n\t\t<h4 class="card-title">'+app.root.links[i].tabularItem[j].caption+'</h4>'+
                         '\n\t</div>'+
                         '\n</div></a>';
-                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',tempLi);
+                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html',tempLi);
                     }
                     
                     var tempWorkingFile=currentWorkingFile;
@@ -648,12 +648,12 @@ var generateLayoutType = function()
 
                 }
 
-                fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html','\n</div>');
+                fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html','\n</div>');
                 console.log("copy tabular")
             }
             else
             {
-                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html', currentWorkingFile+'/'+app.root.links[i].caption+'.html');
+                fs.copySync('layout_template/'+app.root.framework+'/page_type/'+app.root.links[i].type+'/'+app.root.links[i].type+'.html', currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html');
                 var j=0;
                 while(j<app.root.links[i].tabularItem.length)
                 {
@@ -668,7 +668,7 @@ var generateLayoutType = function()
                         '\n\t</div>'+
                       '\n</div></a>'
                         
-                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',tempLi);
+                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html',tempLi);
  
                 
                     }
@@ -682,7 +682,7 @@ var generateLayoutType = function()
                         '\n\t\t<h4 class="card-title">'+app.root.links[i].tabularItem[j].caption+'</h4>'+
                         '\n\t</div>'+
                         '\n</div></a>';
-                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html',tempLi);
+                        fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html',tempLi);
                     }
 
                     var tempWorkingFile=currentWorkingFile;
@@ -700,7 +700,7 @@ var generateLayoutType = function()
                     j++;
                 }
 
-                fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption+'.html','\n</div>');
+                fs.appendFileSync(currentWorkingFile+'/'+app.root.links[i].caption.replace(/\s/g, '')+'.html','\n</div>');
                 console.log("copy tabular")
 
                 
